@@ -19,8 +19,8 @@ const natural_language_classifier = watson.natural_language_classifier({
   version: 	'v1'
 });
 var conversation = watson.conversation({
-  username: ‘aaf450ca-c404-4dbc-85b5-90f2f6bea14c’,
-  password: ‘XDPu8z706aKD’,
+  username: 'aaf450ca-c404-4dbc-85b5-90f26bea14c',
+  password: 'XDPu8z706aKD',
   version: 'v1',
   version_date: '2017-10-10’
 });
