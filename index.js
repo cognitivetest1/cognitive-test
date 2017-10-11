@@ -235,7 +235,7 @@ app.post('/api/sendmail',function(req,res){
 });
 
 //Calling the Conversation API services
-app.post('/api/emailclassify',function(req, res){
+app.post('/classify',function(req, res){
 
   console.log("Context Body: " +req.body.context);
   console.log("Text Body: " +req.body.text);
@@ -254,15 +254,15 @@ app.post('/api/emailclassify',function(req, res){
     else
     {
       console.log("Complete response" +JSON.stringify(response, null, 2));
-      //var intent = JSON.stringify(response,null,2);
-      //intent = intent.result.intents[0].intent;
+      var intent = JSON.stringify(response,null,2);
+      intent = intent.result.intents[0].intent;
       res.send( JSON.stringify(response,null,2));
     }
   });
 }); 
 
 //to classify the email
-app.get('/classify',function(req,res){
+/*app.get('/classify',function(req,res){
 	console.log(req.query.text);
 	var text=req.query.text;
 	  natural_language_classifier.classify({ text: text ,  classifier_id: '1c5f1ex204-nlc-68213'},
@@ -277,7 +277,9 @@ app.get('/classify',function(req,res){
         res.send(JSON.stringify(tone, null, 2));
       }
   });
-});
+}); */
+
+
 
 app.get('/signout', function(req, res) {
     console.log('Sign Out..');
