@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var httpreq = require('request');
-//var jsonreq = {"client_id": "c6f36595-cad5-4861-8dd7-b6849cab70bd","scope":"mail.read","code"="M130722b4-1c3d-72f7-2521-dada13ec9c89","client_secret"="X5gnN89guhOP6v6eyubQXwP","redirect_uri"="https://app-code1.herokuapp.com/signin","grant_type"="authorization_code"}
+//var jsonreq = {"client_id": "c6f36595-cad5-4861-8dd7-b6849cab70bd","scope":"mail.read","code"="M130722b4-1c3d-72f7-2521-dada13ec9c89","client_secret"="X5gnN89guhOP6v6eyubQXwP","redirect_uri"="https://emailaccess.herokuapp.com/signin","grant_type"="authorization_code"}
 const MicrosoftGraph = require("@microsoft/microsoft-graph-client");
 
 //global variable
@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 app.get('/signin', function(req, res) {
     console.log('reached get'); 
     console.log(req.query.code);
-    var jsonreq = {grant_type:"authorization_code",client_id: "c6f36595-cad5-4861-8dd7-b6849cab70bd",scope:"mail.read mail.send",code:req.query.code,client_secret:"X5gnN89guhOP6v6eyubQXwP",redirect_uri:"https://app-code1.herokuapp.com/signin"};
+    var jsonreq = {grant_type:"authorization_code",client_id: "c6f36595-cad5-4861-8dd7-b6849cab70bd",scope:"mail.read mail.send",code:req.query.code,client_secret:"X5gnN89guhOP6v6eyubQXwP",redirect_uri:"https://emailaccess.herokuapp.com/signin"};
     console.log(jsonreq);
     httpreq({
     url: "https://login.microsoftonline.com/common/oauth2/v2.0/token",
@@ -235,7 +235,7 @@ app.post('/api/sendmail',function(req,res){
 });
 
 //Calling the Conversation API services
-app.post('/classify',function(req, res){
+app.post('/api/emailclassify',function(req, res){
 
   console.log("Context Body: " +req.body.context);
   console.log("Text Body: " +req.body.text);
@@ -254,15 +254,15 @@ app.post('/classify',function(req, res){
     else
     {
       console.log("Complete response" +JSON.stringify(response, null, 2));
-      var intent = JSON.stringify(response,null,2);
-      intent = intent.result.intents[0].intent;
+      //var intent = JSON.stringify(response,null,2);
+      //intent = intent.result.intents[0].intent;
       res.send( JSON.stringify(response,null,2));
     }
   });
 }); 
 
 //to classify the email
-/*app.get('/classify',function(req,res){
+app.get('/classify',function(req,res){
 	console.log(req.query.text);
 	var text=req.query.text;
 	  natural_language_classifier.classify({ text: text ,  classifier_id: '1c5f1ex204-nlc-68213'},
@@ -277,13 +277,11 @@ app.post('/classify',function(req, res){
         res.send(JSON.stringify(tone, null, 2));
       }
   });
-}); */
-
-
+});
 
 app.get('/signout', function(req, res) {
     console.log('Sign Out..');
-    var jsonreq = {post_logout_redirect_uri:"https://app-code1.herokuapp.com/"};
+    var jsonreq = {post_logout_redirect_uri:"https://emailaccess.herokuapp.com/"};
     console.log(jsonreq);
     httpreq({
     	//url: "https://emailaccess.herokuapp.com/",
