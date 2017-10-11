@@ -18,7 +18,7 @@ const natural_language_classifier = watson.natural_language_classifier({
   password: 'ShXws2ujrNaE',
   version: 	'v1'
 });
-var conversation = watson.conversation({
+const conversation = watson.conversation({
   username: 'aaf450ca-c404-4dbc-85b5-90f26bea14c',
   password: 'XDPu8z706aKD',
   version: 'v1',
@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 app.get('/signin', function(req, res) {
     console.log('reached get'); 
     console.log(req.query.code);
-    var jsonreq = {grant_type:"authorization_code",client_id: "c6f36595-cad5-4861-8dd7-b6849cab70bd",scope:"mail.read mail.send",code:req.query.code,client_secret:"X5gnN89guhOP6v6eyubQXwP",redirect_uri:"https://emailaccess.herokuapp.com/signin"};
+    var jsonreq = {grant_type:"authorization_code",client_id: "c6f36595-cad5-4861-8dd7-b6849cab70bd",scope:"mail.read mail.send",code:req.query.code,client_secret:"X5gnN89guhOP6v6eyubQXwP",redirect_uri:"https://app-code1.herokuapp.com/signin"};
     console.log(jsonreq);
     httpreq({
     url: "https://login.microsoftonline.com/common/oauth2/v2.0/token",
@@ -265,7 +265,7 @@ app.post('/api/emailclassify',function(req, res){
 app.get('/classify',function(req,res){
 	console.log(req.query.text);
 	var text=req.query.text;
-	  natural_language_classifier.classify({ text: text ,  classifier_id: '1c5f1ex204-nlc-68213'},
+	  conversation.classify({ text: text ,  classifier_id: '1c5f1ex204-nlc-68213'},
     function(err, tone) {
       if (err)
       {
@@ -281,7 +281,7 @@ app.get('/classify',function(req,res){
 
 app.get('/signout', function(req, res) {
     console.log('Sign Out..');
-    var jsonreq = {post_logout_redirect_uri:"https://emailaccess.herokuapp.com/"};
+    var jsonreq = {post_logout_redirect_uri:"https://app-code1.herokuapp.com/"};
     console.log(jsonreq);
     httpreq({
     	//url: "https://emailaccess.herokuapp.com/",
