@@ -254,8 +254,8 @@ app.post('/api/emailclassify',function(req, res){
     else
     {
       console.log("Complete response" +JSON.stringify(response, null, 2));
-      //var intent = JSON.stringify(response,null,2);
-      //intent = intent.result.intents[0].intent;
+      var intent = JSON.stringify(response,null,2);
+      intent = intent.result.intents[0].intent;
       res.send( JSON.stringify(response,null,2));
     }
   });
