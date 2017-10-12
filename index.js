@@ -241,7 +241,7 @@ app.post('/api/emailclassify',function(req, res){
   console.log("Text Body: " +req.body.text);
 
   conversation.message({
-    workspace_id: '17fb7c46-7bc6-4195-9319-bc1f91001304',
+    workspace_id: 'aed00036-e0d1-4a47-8906-e11b16f5f9f1',
     input: {text: req.body.text},
     context: req.body.context,
     alternate_intents: true
@@ -254,8 +254,8 @@ app.post('/api/emailclassify',function(req, res){
     else
     {
       console.log("Complete response" +JSON.stringify(response, null, 2));
-      var intent = JSON.stringify(response,null,2);
-      intent = intent.result.intents[0].intent;
+      //var intent = JSON.stringify(response,null,2);
+      //intent = intent.result.intents[0].intent;
       res.send( JSON.stringify(response,null,2));
     }
   });
@@ -265,7 +265,7 @@ app.post('/api/emailclassify',function(req, res){
 app.get('/classify',function(req,res){
 	console.log(req.query.text);
 	var text=req.query.text;
-	  conversation.classify({ text: text ,  classifier_id: '1c5f1ex204-nlc-68213'},
+	  natural_language_classifier.classify({ text: text ,  classifier_id: '1c5f1ex204-nlc-68213'},
     function(err, tone) {
       if (err)
       {
