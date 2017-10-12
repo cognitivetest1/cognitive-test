@@ -241,7 +241,7 @@ app.post('/api/emailclassify',function(req, res){
   console.log("Text Body: " +req.body.text);
 
   conversation.message({
-    workspace_id: 'aed00036-e0d1-4a47-8906-e11b16f5f9f1',
+    workspace_id: '17fb7c46-7bc6-4195-9319-bc1f91001304',
     input: {text: req.body.text},
     context: req.body.context,
     alternate_intents: true
