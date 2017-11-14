@@ -19,7 +19,7 @@ const natural_language_classifier = watson.natural_language_classifier({
   version: 	'v1'
 });
 var conversation = watson.conversation({
-  username: ''dccf3bfa-6e72-4589-a66d-1089784818cc',
+  username: 'dccf3bfa-6e72-4589-a66d-1089784818cc',
   password: 'LENF1ZsL51Sp',
   version: 'v1',
   version_date: '2017-04-21'
